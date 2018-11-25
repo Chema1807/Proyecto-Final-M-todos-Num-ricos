@@ -1,10 +1,11 @@
-Proyecto Final Métodos Numéricos
+Segundo Parcial:
 
-Primer Parcial
-https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/tree/Primer-Parcial
+Funciones con matrices
 
-Segundo Parcial
+Eliminación Gaussiana
 
+Factorización LU
 
-Tercer Parcial
+Newton-Raphson no lineal
 
+Gauss-Seidel
