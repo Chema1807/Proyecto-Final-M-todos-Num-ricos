@@ -1,0 +1,35 @@
+from sympy import *
+import matplotlib.pyplot as plt
+import numpy as np
+
+x=[1950,1960,1970,1980,1990,2000]
+y=[123.5,131.2,150.7,141.3,203.2,240.5]
+
+pL=''
+
+for k in range(len(y)):
+    pL += str(y[k])+'*'
+    Lxk=1
+    for i in range(len(x)):
+        if (i==k):
+            continue
+        pL += '(x-%f)*'%(x[i])
+        Lxk *= (x[k]-x[i])
+    pL=pL[:-1]
+    pL += '/%f+'%(Lxk)
+pL=pL[:-1]
+
+expre=sympify(pL)
+print(expand(expre))
+
+plt.plot(x,y,'ro')
+
+x2=np.linspace(1950,2000,100)
+x=symbols('x')
+y2=[expre.subs(x,xi) for xi in x2]
+
+plt.plot(x2,y2,'g')
+plt.grid()
+
+resultado=expre.subs(x,1965)
+print('Población para 1965:',resultado)
