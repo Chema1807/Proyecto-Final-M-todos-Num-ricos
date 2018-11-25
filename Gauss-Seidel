@@ -1,0 +1,37 @@
+#4x1+x2-x3=0
+#2x1+5x2+2x3=3
+#x1+2x2+4x3=11
+
+def getx1(x2,x3):
+    return (-x2-2*x3)/-3
+
+def getx2(x1,x3):
+    return (210-15*x3-5*x1)/20
+
+def getx3(x1,x2):
+    return x1/2
+
+#Valores iniciales
+x1=4
+x2=4
+x3=4
+E=0.0000000000000001
+itera=0
+
+for i in range(100):
+    x1i=getx1(x2,x3)
+    x2i=getx2(x1i,x3)
+    x3i=getx3(x1i,x2i)
+    Ex1=abs(x1-x1i)
+    Ex2=abs(x2-x2i)
+    Ex3=abs(x3-x3i)
+    x1=x1i
+    x2=x2i
+    x3=x3i
+    itera=itera+1
+    if Ex1<E and Ex2<E and Ex3<E:
+        break
+print("Iteraciones:",itera)
+print("x1:",x1)
+print("x2:",x2)
+print("x3:",x3)
