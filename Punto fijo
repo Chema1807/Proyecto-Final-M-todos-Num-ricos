@@ -1,0 +1,17 @@
+def xn(x):
+    return (2*x**2+3)/5
+
+x0=0
+x1=0
+datos=1000
+iteraciones=0
+
+for i in range(datos):
+    x1=xn(x0)
+    if abs(x1-x0)<=0:
+        break
+    x0=x1
+    iteraciones+=1
+
+print("La raíz es %.5f"%x1)
+print("Usando %i iteraciones"%iteraciones)
