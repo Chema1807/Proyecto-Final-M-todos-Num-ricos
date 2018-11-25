@@ -1,0 +1,46 @@
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def fun(c):
+    return c**3-7*c**2+14*c-6
+
+datos=100
+
+cini=-4
+cfin=4
+
+carray=np.linspace(cini,cfin,datos)
+fcarray=np.zeros(datos)
+
+for i in range(datos):
+    fcarray[i]=fun(carray[i])
+
+plt.plot(carray,fcarray)
+plt.grid()
+
+c0=3.2
+c1=4
+
+maxiter=100
+itera=0
+
+for i in range(maxiter):
+    itera+=1
+    fc0=fun(c0)
+    fc1=fun(c1)
+    if(fc0*fc1)>0:
+        print("No hay raíz en el rango selecconado")
+        break
+    cr=c0-(fc1-fc0)*c1/(f1-f0)
+    fcr=fun(cr)
+    if(fc0*fcr)<0:
+        c1=cr
+    else:
+        c0=cr
+    if(abs(fcr)<0.0001):
+        break
+
+print("La raíz es %.5f"%c0)
+print("Con %i iteraciones"%itera)
