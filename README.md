@@ -1,12 +1,13 @@
-Proyecto Final Métodos Numéricos
+Tercer Parcial:
 
-Primer Parcial
-https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/tree/Primer-Parcial
+Regresión polinomial
 
-Segundo Parcial
-https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/tree/Segundo-Parcial
+Interpolación polinomial
 
-Tercer Parcial
+Método de Lagrange
 
+Integración numérica
+
+Ecuaciones diferenciales - Euler
 
 (Leer los updates de cada archivo para la descripción de cada uno)
