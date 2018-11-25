@@ -9,3 +9,5 @@ Falsa posición https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/bl
 Punto fijo https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/blob/Primer-Parcial/Punto%20fijo
 
 Método gráfico https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/blob/Primer-Parcial/M%C3%A9todo%20gr%C3%A1fico
+
+(Leer los updates de cada archivo para la descripción de cada uno)
