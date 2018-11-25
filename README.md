@@ -9,3 +9,5 @@ Factorización LU https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/
 Newton-Raphson no lineal https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/blob/Segundo-Parcial/Newton-Raphson%20no%20lineal
 
 Gauss-Seidel https://github.com/Chema1807/Proyecto-Final-M-todos-Num-ricos/blob/Segundo-Parcial/Gauss-Seidel
+
+(Leer los updates de cada archivo para la descripción de cada uno)
