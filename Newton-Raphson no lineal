@@ -1,0 +1,162 @@
+def CreateMatrix(m,n,v):
+    C=[]
+    for i in range(m):
+        C.append([])
+        for j in range(n):
+            C[i].append(v)
+    return C
+
+def getDimensions(A):
+    return (len(A),len(A[0]))
+
+
+def SumMatrix(A,B): #Suma de matrices
+    Am,An=getDimensions(A)
+    Bm,Bn=getDimensions(B)
+    if Am!=Bm or An!=Bn:
+        print("No se pueden sumar, las dimensiones son diferentes")
+        return []
+    C=CreateMatrix(Am,An,0)
+    for i in range(Am):
+        for j in range(An):
+            C[i][j]=A[i][j]+B[i][j]
+    return C
+
+def SubMatrix(A,B): #Resta de matrices
+    Am,An=getDimensions(A)
+    Bm,Bn=getDimensions(B)
+    if Am!=Bm or An!=Bn:
+        print("No se pueden restar, las dimensiones son diferentes")
+        return []
+    C=CreateMatrix(Am,An,0)
+    for i in range(Am):
+        for j in range(An):
+            C[i][j]=A[i][j]-B[i][j]
+    return C
+
+def MultiMatrix(A,B): #Multiplicación de matrices
+    Am,An=getDimensions(A)
+    Bm,Bn=getDimensions(B)
+    if An!=Bm:
+        print("No se pueden multiplicar, las matrices no son conformables")
+    C=CreateMatrix(Am,Bn,0)
+    for i in range(Am):
+        for j in range(Bn):
+            for k in range(An):
+                C[i][j] += A[i][k] * B[k][j]
+    return C
+
+def getMenorMatrix(A,r,c): #Matriz menor para el determinante
+    m,n=getDimensions(A)
+    C=CreateMatrix(m-1,n-1,0)
+    for i in range(m):
+        if i==r:
+            continue
+        for j in range(n):
+            if j==c:
+                continue
+            Ci=i
+            if i>r:
+                Ci=i-1
+            Cj=j
+            if j>c:
+                Cj=j-1
+            C[Ci][Cj]=A[i][j]
+    return C
+
+def DetMatrix(A): #Determinante de la matriz
+    m,n=getDimensions(A)
+    if m!=n:
+        print("La matriz no es cuadrada")
+        return -1
+    if m==1:
+        return m
+    if m==2:
+        return A[0][0]*A[1][1]-A[0][1]*A[1][0]
+    det=0
+    for j in range(n):
+        det+=(-1)**(j)*A[0][j]*DetMatrix(getMenorMatrix(A,0,j))
+    return det
+
+
+def getMatrixAdj(A): #Matriz adyacente
+    m,n=getDimensions(A)
+    C=CreateMatrix(m,n,0)
+    for i in range(m):
+        for j in range(n):
+            C[i][j]=(-1)**(i+j)*DetMatrix(getMenorMatrix(A,i,j))
+    return C
+
+
+def getTranspuesta(A): #Matriz transpuesta
+    m,n=getDimensions(A)
+    C=CreateMatrix(n,m,0)
+    for i in range(m):
+        for j in range(n):
+            C[j][i]=A[i][j]
+    return C
+
+
+def getMatrixInv(A):
+    detA=DetMatrix(A)
+    if detA==0:
+        print("El determinante es 0, no hay inversa")
+        return 0
+    AT=getTranspuesta(A)
+    adjA=getMatrixAdj(AT)
+    m,n=getDimensions(A)
+    C=CreateMatrix(m,n,0)
+    for i in range(m):
+        for j in range(n):
+            C[i][j]=(1/detA)*adjA[i][j]
+    return C
+
+#u(x,y)=x^2+xy-10
+#v(x,y)=y+3xy^2-57
+
+def u(x,y):
+    return x*y-40
+
+def v(x,y):
+    return x**2+y**2-100
+
+def dudx(x,y):
+    return x
+
+def dudy(x,y):
+    return y
+
+def dvdx(x,y):
+    return 2*x
+
+def dvdy(x,y):
+    return 2*y
+
+A=[[dudx,dudy],[dvdx,dvdy]]
+
+C=[[1],[3]]
+
+D=[[u],[v]]
+
+Ca=[[10],[10]]
+
+for i in range(50):
+    Di=CreateMatrix(2,1,0)
+    for k in range(2):
+        for j in range(1):
+            Di[k][j]=D[k][j](C[0][0],C[1][0])
+    Ai=CreateMatrix(2,2,0)
+    for k in range(2):
+        for j in range(2):
+            Ai[k][j]=A[k][j](C[0][0],C[1][0])
+    invAi=getMatrixInv(Ai)
+    Bi=SubMatrix(C,MultiMatrix(invAi,Di))
+    print("x,y:")
+    print(Bi)
+    Ce=SubMatrix(Ca,Bi)
+    print("Error:")
+    print(Ce)
+    if abs(Ce[0][0])<0.001 and abs(Ce[1][0])<0.001:
+        break
+    Ca=C
+    C=Bi
